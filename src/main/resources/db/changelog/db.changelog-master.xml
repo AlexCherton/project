@@ -1,0 +1,83 @@
+<databaseChangeLog
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+
+    <changeSet id="create-project-table" author="chuchelin">
+        <createTable tableName="project">
+            <column name="id" type="int" autoIncrement="true">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="name" type="varchar(200)">
+                <constraints nullable="false" unique="true"/>
+            </column>
+            <column name="status" type="varchar(64)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="date_start" type="date">
+                <constraints nullable="true"/>>
+            </column>
+            <column name="date_end" type="date">
+                <constraints nullable="true"/>>
+            </column>
+
+        </createTable>
+        <createTable tableName="project_manager">
+            <column name="id" type="int" autoIncrement="true">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="name" type="varchar(200)">
+                <constraints nullable="true"/>
+            </column>
+            <column name="patronymic" type="varchar(100)">
+                <constraints nullable="true"/>
+            </column>
+            <column name="surname" type="varchar(100)">
+                <constraints nullable="true"/>
+            </column>
+
+        </createTable>
+
+        <createTable tableName="performer">
+            <column name="id" type="int" autoIncrement="true">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="name" type="varchar(200)">
+                <constraints nullable="true"/>
+            </column>
+            <column name="patronymic" type="varchar(100)">
+                <constraints nullable="true"/>
+            </column>
+            <column name="surname" type="varchar(100)">
+                <constraints nullable="true"/>
+            </column>
+        </createTable>
+
+
+        <createTable tableName="project_manager_project">
+            <column name="id" type="int" autoIncrement="true">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="project_manager_id" type="int">
+                <constraints foreignKeyName="project_manager_project_id_project_manager_id" references="project_manager(id)"/>
+            </column>
+            <column name="project_id" type="int">
+                <constraints foreignKeyName="project_manager_project_id_project_id" references="project(id)"/>
+            </column>
+        </createTable>
+
+        <createTable tableName="performer_project">
+            <column name="id" type="int" autoIncrement="true">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="performer_id" type="int">
+                <constraints foreignKeyName="performer_project_id_performer_id" references="performer(id)"/>
+            </column>
+            <column name="project_id" type="int">
+                <constraints foreignKeyName="performer_project_id_project_id" references="project(id)"/>
+            </column>
+        </createTable>
+
+    </changeSet>
+
+</databaseChangeLog>

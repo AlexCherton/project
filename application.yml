@@ -1,0 +1,13 @@
+spring:
+  liquibase:
+    enabled: true
+    change-log: classpath:db/changelog/db.changelog-master.xml
+  datasource:
+    url: jdbc:h2:file:./db
+    username: u
+    password: 1
+  jpa:
+    database-platform: org.hibernate.dialect.H2Dialect
+  h2:
+    console:
+      enabled: true
